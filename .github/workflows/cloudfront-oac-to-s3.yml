@@ -26,7 +26,7 @@ jobs:
           aws-region: us-east-1
       - name: Create S3 bucket for remote backend configuration of Terraform
         env:
-          BUCKET_NAME: ${{REPO_OWNER}}-terraform-backend
+          BUCKET_NAME: ${{ env.REPO_OWNER }}-terraform-backend
         run: |
           echo "Name of Github Repository Owner is $REPO_OWNER"
           echo "Bucket name will be $BUCKET_NAME"
