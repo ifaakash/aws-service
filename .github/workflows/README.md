@@ -25,3 +25,30 @@ env:
 ```
 ${{ github.GITHUB_REPOSITORY }}
 ```
+
+## How to pass env variables in stage and at root level, in Github Actions?
+
+- If env variable is at root level
+
+```
+env:
+  AWS_REGION: "us-east-1"
+
+- name: Create S3 bucket for remote backend configuration of Terraform
+  run: |
+    echo "Selected AWS Region is ${{ env.AWS_REGION }}"
+```
+
+
+- If env variables is at job level
+
+```
+env:
+  AWS_REGION: "us-east-1"
+
+- name: Create S3 bucket for remote backend configuration of Terraform
+  env:
+    AWS_BUCKET_NAME: ${{ env.AWS_REGION }}-terraform-backend
+  run: |
+    echo "Bucket name is $AWS_BUCKET_NAME"
+```
