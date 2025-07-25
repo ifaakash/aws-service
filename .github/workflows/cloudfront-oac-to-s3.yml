@@ -28,4 +28,4 @@ jobs:
         env:
           BUCKET_NAME: ${{ env.REPO_OWNER }}-terraform-backend
         run: |
-          aws s3 mb s3://$BUCKET_NAME --region {{ env.AWS_REGION }}
+          aws s3 mb s3://$BUCKET_NAME --region ${{ env.AWS_REGION }}
