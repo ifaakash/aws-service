@@ -4,7 +4,8 @@ This repository contain the steps on establishing the connection between the Clo
 ## Target
 - [x] Create a S3 Bucket ( via Github Action ) to store state file configuration using Terraform
 - [x] Establish connection from Github to AWS using OIDC
-- [ ] Create a Github Action
+- [ ] Link terraform to the S3 created ( for storing state file ) in above steps
+- [ ] Create a Github Action [ Integrate atlantis, if possible ]
 - [ ] Create S3 Bucket ( for storing image ) using Github CLI
 - [ ] Upload Image to S3 Bucket
 - [ ] Create Cloudfront distribution using Terraform
