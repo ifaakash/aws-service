@@ -24,8 +24,18 @@ jobs:
         with:
           role-to-assume: ${{secrets.ASSUME_ROLE_ARN}}
           aws-region: us-east-1
+
       - name: Create S3 bucket for remote backend configuration of Terraform
         env:
           BUCKET_NAME: ${{ env.REPO_OWNER }}-terraform-backend
         run: |
           aws s3 mb s3://$BUCKET_NAME --region ${{ env.AWS_REGION }}
+
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Test terraform connectivity to AWS
+        run: |
+          echo "Present working directory is ${pwd}"
+          cd Cloudfront/
+          terraform init
