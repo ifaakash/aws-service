@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket = var.remote_bucket
-    key    = "backend-config.tfstate"
+    key    = "ifaakash-aws-infra.tfstate"
     region = var.aws_region
   }
 }

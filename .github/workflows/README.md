@@ -52,3 +52,17 @@ env:
   run: |
     echo "Bucket name is $AWS_BUCKET_NAME"
 ```
+
+## How to create a remote backend file, for storing state of terraform?
+
+- This assumes we have a bucket created called mybucket. The Terraform state is written to the key path/to/my/key.
+
+```
+terraform {
+  backend "s3" {
+    bucket = var.remote_bucket
+    key    = "ifaakash-aws-infra.tfstate"
+    region = var.aws_region
+  }
+}
+```
