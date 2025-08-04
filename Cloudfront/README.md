@@ -2,10 +2,10 @@
 This repository contain the steps on establishing the connection between the Cloudfront and S3 Bucket
 
 ## Target
-- [ ] Create a S3 Bucket ( via Github Action ) to store state file configuration using Terraform
+- [x] Create a S3 Bucket ( via Github Action ) to store state file configuration using Terraform
 - [x] Establish connection from Github to AWS using OIDC
 - [ ] Create a Github Action
-- [ ] Create S3 Bucket using Github CLI
+- [ ] Create S3 Bucket ( for storing image ) using Github CLI
 - [ ] Upload Image to S3 Bucket
 - [ ] Create Cloudfront distribution using Terraform
 - [ ] Enable OAC for Cloudfront
