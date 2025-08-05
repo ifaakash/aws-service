@@ -19,8 +19,8 @@ env:
 ```
 ## Using Github in-built variables
 
-[Docs for in-built github variables] (https://docs.github.com/en/actions/reference/workflows-and-actions/variables)
-[Docs for in-built github variables specific to Github Actions] (https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#github-context)
+- [Docs for in-built github variables] (https://docs.github.com/en/actions/reference/workflows-and-actions/variables)
+- [Docs for in-built github variables specific to Github Actions] (https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#github-context)
 
 ```
 ${{ github.GITHUB_REPOSITORY }}
