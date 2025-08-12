@@ -36,6 +36,6 @@ jobs:
 
       - name: Test terraform connectivity to AWS
         run: |
-          echo "Present working directory is ${pwd}"
+          echo "Present working directory is $PWD"
           cd Cloudfront/
           terraform init
