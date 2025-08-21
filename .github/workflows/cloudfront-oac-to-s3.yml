@@ -8,8 +8,11 @@ permissions:
   id-token: write
   contents: read
 
+env:
+  AWS_REGION: "us-east-1"
+
 jobs:
-  login-to-aws:
+  setup-connection:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -20,7 +23,6 @@ jobs:
         with:
           role-to-assume: ${{secrets.ASSUME_ROLE_ARN}}
           aws-region: us-east-1
-
-      - name: Validate credetials
+      - name: Create S3 bucket for remote backend configuration of Terraform
         run: |
-          aws sts get-caller-identity
+          aws s3 mb s3://${{ github.GITHUB_REPOSITORY }}-terraform-backend --region $AWS_REGION
