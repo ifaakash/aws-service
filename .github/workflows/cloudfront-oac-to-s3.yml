@@ -10,7 +10,7 @@ permissions:
 
 env:
   AWS_REGION: "us-east-1"
-  REPO_OWNER: ${{github.GITHUB_REPOSITORY_OWNER}}
+  REPO_OWNER: ${{github.repository_owner}}
 
 jobs:
   setup-connection:
