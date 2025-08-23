@@ -10,6 +10,7 @@ permissions:
 
 env:
   AWS_REGION: "us-east-1"
+  REPO_OWNER: ${{github.GITHUB_REPOSITORY_OWNER}}
 
 jobs:
   setup-connection:
@@ -25,4 +26,4 @@ jobs:
           aws-region: us-east-1
       - name: Create S3 bucket for remote backend configuration of Terraform
         run: |
-          aws s3 mb s3://${{github.GITHUB_REPOSITORY_OWNER}}-terraform-backend --region $AWS_REGION
+          aws s3 mb s3://$REPO_OWNER-terraform-backend --region $AWS_REGION
