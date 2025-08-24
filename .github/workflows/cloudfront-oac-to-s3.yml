@@ -18,7 +18,7 @@ jobs:
       - name: Assume OIDC Role
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: ${secrets.ASSUME_ROLE_ARN}
+          role-to-assume: ${{secrets.ASSUME_ROLE_ARN}}
           aws-region: us-east-1
 
       - name: Validate credetials
