@@ -17,3 +17,10 @@ env:
   run: |
     aws s3 mb s3://${{ github.GITHUB_REPOSITORY }}-terraform-backend --region $AWS_REGION
 ```
+## Using Github in-built variables
+
+[Docs for in-built github variables] (https://docs.github.com/en/actions/reference/workflows-and-actions/variables)
+
+```
+${{ github.GITHUB_REPOSITORY }}
+```
