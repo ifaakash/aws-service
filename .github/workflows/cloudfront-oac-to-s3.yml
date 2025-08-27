@@ -42,6 +42,10 @@ jobs:
 
       - name: Terraform Plan
         run: |
-          echo "Working directory is $PWD"
           cd Cloudfront/
           terraform plan
+
+      - name: Terraform Applys
+        run: |
+          cd Cloudfront/
+          terraform apply --auto-approve
