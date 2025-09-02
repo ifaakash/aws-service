@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket = var.remote_bucket
+    bucket = 
     key    = "ifaakash-aws-infra.tfstate"
-    region = var.aws_region
+    region = "us-east-1"
   }
 }
 

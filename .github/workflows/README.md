@@ -66,3 +66,7 @@ terraform {
   }
 }
 ```
+
+## Can we pass bucket name to backend configuration using variables.tf?
+
+- Terraform reads the backend configuration before it processes variables, so it cannot resolve variable references at that stage. This limitation is by design to ensure the backend can be initialized predictably and securely, before the rest of the configuration is loaded.
