@@ -1,0 +1,26 @@
+name: Cloudfront OAC to S3
+
+# Trigger github action manually only
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: read
+  contents: write
+
+jobs:
+  login-to-aws:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Assume OIDC Role
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${secrets.ASSUME_ROLE_ARN}
+          aws-region: us-east-1
+
+      - name: Validate credetials
+        run: |
+          aws sts get-caller-identity
