@@ -1,0 +1,25 @@
+name: Deploy to P41 Sandbox
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+  ASSUME_ROLE_ARN: ${{ secrets.ASSUME_ROLE_ARN }}
+
+jobs:
+  login-to-aws:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Assume role and login to AWS
+        uses: aws-actions/configure-aws-credentials@v5.0.0
+        with:
+          role-to-assume: ${{ env.ASSUME_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
