@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = 
+    bucket = "ifaakash-terraform-backend"
     key    = "ifaakash-aws-infra.tfstate"
     region = "us-east-1"
   }
