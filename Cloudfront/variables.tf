@@ -17,6 +17,7 @@ variable "aws_region" {
 variable "storage_bucket_name" {
   description = "The name of the S3 bucket"
   type        = string
+  default = "ifaakash-dump-s3"
 }
 
 variable "tags" {
