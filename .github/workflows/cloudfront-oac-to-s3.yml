@@ -39,3 +39,6 @@ jobs:
           echo "Present working directory is $PWD"
           cd Cloudfront/
           terraform init
+
+      - name: Terraform Plan
+        run: terraform plan
