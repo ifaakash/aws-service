@@ -30,7 +30,10 @@ jobs:
       - name: Change to working directory
         run: |
           echo "Current working directory: $(pwd)"
-          cd sandbox/
+          echo "Changing to working directory"
+          cd sandbox/ && (pwd)
+          echo "Listing folder structure"
+          ls -l
 
       - name: Initialize Terraform
         run: terraform init
