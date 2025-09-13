@@ -81,7 +81,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: tfplan-artifact
-          path: .
+          path: sandbox/
 
       - name: Initialize Terraform
         run: terraform init
