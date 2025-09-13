@@ -19,8 +19,8 @@ variable "public_subnet_cidr_block" {
 }
 
 variable "ssh_access_cidr" {
-  type    = list(string)
-  default = ["49.36.144.148"]
+  type    = string
+  default = "49.36.144.148"
 }
 
 variable "private_subnet_cidr_block" {

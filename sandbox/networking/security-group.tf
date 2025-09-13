@@ -10,7 +10,7 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_ssh" {
   from_port         = 22
   to_port           = 22
   ip_protocol       = "tcp"
-  cidr_ipv4         = ["${var.ssh_access_cidr}"]
+  cidr_ipv4         = "${var.ssh_access_cidr}"
 }
 
 resource "aws_vpc_security_group_ingress_rule" "ingress_http" {
@@ -18,7 +18,7 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_http" {
   from_port         = 80
   to_port           = 80
   ip_protocol       = "tcp"
-  cidr_ipv4         = ["${var.ssh_access_cidr}"]
+  cidr_ipv4         = "${var.ssh_access_cidr}"
 }
 
 resource "aws_vpc_security_group_egress_rule" "egress_all" {
