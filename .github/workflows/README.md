@@ -70,3 +70,21 @@ terraform {
 ## Can we pass bucket name to backend configuration using variables.tf?
 
 - Terraform reads the backend configuration before it processes variables, so it cannot resolve variable references at that stage. This limitation is by design to ensure the backend can be initialized predictably and securely, before the rest of the configuration is loaded.
+
+
+## Trigger Github action Apply only when the PR approval is done
+
+- The terraform plan will run on every push to the branch, but the terraform apply will only run when the PR is approved
+- Similar setup as `Atlantis`
+
+
+### Approaches:
+
+- Using `environment` in github actions
+
+```
+jobs:
+  terraform-apply:
+    runs-on: ubuntu-latest
+    environment: production
+```
