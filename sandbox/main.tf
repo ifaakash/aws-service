@@ -27,6 +27,7 @@ module "network" {
   public_subnet_cidr_block  = var.public_subnet_cidr_block
   private_subnet_cidr_block = var.private_subnet_cidr_block
   ssh_access_cidr           = var.ssh_access_cidr
+  instance_id               = module.instance.instance_id
   default_tags              = var.default_tags
 }
 

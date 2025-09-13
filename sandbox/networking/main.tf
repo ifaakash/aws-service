@@ -40,3 +40,12 @@ resource "aws_network_interface" "networking_interface" {
   subnet_id = aws_subnet.public_subnet.id
   tags      = merge({ "Name" : "${var.prefix}-networking-interface" }, var.default_tags)
 }
+
+resource "aws_eip" "ip" {
+  domain            = "vpc"
+  instance          = var.instance_id
+  network_interface = aws_network_interface.networking_interface.id
+  tags = merge({
+    "Name" : "${var.prefix}-eip"
+  }, var.default_tags)
+}

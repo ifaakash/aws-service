@@ -18,6 +18,10 @@ variable "ssh_access_cidr" {
   type = string
 }
 
+variable "instance_id" {
+  type = string
+}
+
 variable "default_tags" {
   type = map(string)
 }
