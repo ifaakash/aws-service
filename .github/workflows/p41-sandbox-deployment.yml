@@ -15,7 +15,8 @@ env:
   ASSUME_ROLE_ARN: ${{ secrets.ASSUME_ROLE_ARN }}
 
 jobs:
-  login-to-aws:
+  terraform-plan:
+    if: github.event_name == "pull_request"
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -43,4 +44,35 @@ jobs:
         run: terraform init
 
       - name: terraform plan
-        run: terraform plan
+        run: terraform plan -out=tfplan
+
+      - name: Upload Terraform plan
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfplan-artifact
+          path: tfplan
+
+  terraform-apply:
+    if: github.event_name == "push"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Assume role and login to AWS
+        uses: aws-actions/configure-aws-credentials@v5.0.0
+        with:
+          role-to-assume: ${{ env.ASSUME_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Download plan artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: tfplan-artifact
+          path: .
+
+      - name: Terraform apply
+        run: terraform apply tfplan
