@@ -7,6 +7,15 @@ terraform {
   }
 }
 
+# terraform {
+#   backend "s3" {
+#     bucket = "otcomes-sandbox-terraform-state"
+#     key    = "terraform-state-file"
+#     region = "us-east-1"
+#   }
+# }
+
+
 provider "aws" {
   region = var.aws_region
 }
