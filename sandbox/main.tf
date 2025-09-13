@@ -1,13 +1,4 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-}
-
-module "networking"{
+module "network"{
   source= "./networking"
   region = var.aws_region
   vpc_cidr_block = var.vpc_cidr_block

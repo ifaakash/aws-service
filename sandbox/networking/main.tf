@@ -9,7 +9,6 @@ resource "aws_subnet" "public_subnet" {
   tags       = merge({"Name" : "${var.prefix}-public-subnet"}, var.default_tags)
 }
 
-
 resource "aws_subnet" "private_subnet" {
   vpc_id     = aws_vpc.sandbox_vpc.id
   cidr_block = var.private_subnet_cidr_block
