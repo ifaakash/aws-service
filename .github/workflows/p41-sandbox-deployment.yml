@@ -19,7 +19,7 @@ env:
 jobs:
   # run plan on raising PR, with main branch as target
   terraform-plan:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
     runs-on: ubuntu-latest
     defaults:
       run:
