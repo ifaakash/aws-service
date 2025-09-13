@@ -14,6 +14,9 @@ env:
 jobs:
   login-to-aws:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sandbox/
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -30,8 +33,6 @@ jobs:
       - name: Change to working directory
         run: |
           echo "Current working directory: $(pwd)"
-          echo "Changing to working directory"
-          cd sandbox/ && (pwd)
           echo "Listing folder structure"
           ls -l
 
