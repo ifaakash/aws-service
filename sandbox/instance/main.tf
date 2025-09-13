@@ -5,7 +5,5 @@ resource "aws_ec2_instance" "example" {
     network_interface_id = var.interface_id
   }
   associate_public_ip_address = var.associate_public_ip_address
-  tags = {
-    merge({"Name": "${var.prefix}-instance"}, var.default_tags)
-  }
+  tags = merge( { "Name": "${var.prefix}-instance" }, var.default_tags)
 }
