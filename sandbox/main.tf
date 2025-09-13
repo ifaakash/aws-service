@@ -23,10 +23,11 @@ module "network" {
 
 
 module "instance" {
-  source                    = "./instance"
-  prefix                    = var.prefix
-  ami_id                    = var.ami_id
-  interface_id              = module.network.network_interface_id
-  instance_type             = var.instance_type
-  default_tags              = var.default_tags
+  source                      = "./instance"
+  prefix                      = var.prefix
+  ami_id                      = var.ami_id
+  associate_public_ip_address = var.associate_public_ip_address
+  interface_id                = module.network.network_interface_id
+  instance_type               = var.instance_type
+  default_tags                = var.default_tags
 }

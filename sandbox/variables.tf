@@ -30,21 +30,28 @@ variable "private_subnet_cidr_block" {
   default = "10.0.1.0/28"
 }
 
+######################## INSTANCE ########################
+
+variable "ami_id" {
+  type    = string
+  default = "ami-0360c520857e3138f"
+}
+
+variable "instance_type" {
+  type    = string
+  default = "t2.micro"
+}
+
+variable "associate_public_ip_address" {
+  description = "Whether to associate a public IP address with the instance"
+  type        = bool
+}
+
+######################## DEFAULT TAGS ########################
+
 variable "default_tags" {
   type = map(string)
   default = {
     Environment = "Sandbox"
   }
-}
-
-######################## INSTANCE ########################
-
-variable "ami_id" {
-  type = string
-  default = "ami-0360c520857e3138f"
-}
-
-variable "instance_type" {
-  type = string
-  default = "t2.micro"
 }
