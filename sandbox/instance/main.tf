@@ -4,6 +4,6 @@ resource "aws_instance" "instance" {
   primary_network_interface {
     network_interface_id = var.interface_id
   }
-  associate_public_ip_address = var.associate_public_ip_address
+  # associate_public_ip_address = var.associate_public_ip_address
   tags = merge( { "Name": "${var.prefix}-instance" }, var.default_tags)
 }
