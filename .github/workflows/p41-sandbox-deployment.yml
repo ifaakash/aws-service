@@ -17,6 +17,7 @@ env:
   ASSUME_ROLE_ARN: ${{ secrets.ASSUME_ROLE_ARN }}
 
 jobs:
+  # run plan on raising PR, with main branch as target
   terraform-plan:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
