@@ -20,3 +20,13 @@ module "network" {
   ssh_access_cidr           = var.ssh_access_cidr
   default_tags              = var.default_tags
 }
+
+
+module "instance" {
+  source                    = "./instance"
+  prefix                    = var.prefix
+  ami_id                    = var.ami_id
+  interface_id              = module.network.network_interface_id
+  instance_type             = var.instance_type
+  default_tags              = var.default_tags
+}

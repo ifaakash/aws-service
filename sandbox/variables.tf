@@ -1,3 +1,5 @@
+######################## NETWORKING ########################
+
 variable "aws_region" {
   type    = string
   default = "us-east-1"
@@ -33,4 +35,16 @@ variable "default_tags" {
   default = {
     Environment = "Sandbox"
   }
+}
+
+######################## INSTANCE ########################
+
+variable "ami_id" {
+  type = string
+  default = "ami-0360c520857e3138f"
+}
+
+variable "instance_type" {
+  type = string
+  default = "t2.micro"
 }

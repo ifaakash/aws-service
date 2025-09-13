@@ -34,3 +34,9 @@ resource "aws_route_table_association" "public_route_table_association" {
   subnet_id      = aws_subnet.public_subnet.id
   route_table_id = aws_route_table.public_route_table.id
 }
+
+
+resource "aws_network_interface" "networking_interface" {
+  subnet_id = aws_subnet.public_subnet.id
+  tags      = merge({ "Name" : "${var.prefix}-networking-interface" }, var.default_tags)
+}
