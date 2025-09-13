@@ -80,5 +80,8 @@ jobs:
           name: tfplan-artifact
           path: .
 
+      - name: Initialize Terraform
+        run: terraform init
+
       - name: Terraform apply
         run: terraform apply tfplan
