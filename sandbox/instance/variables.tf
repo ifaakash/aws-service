@@ -18,10 +18,10 @@ variable "prefix" {
   type        = string
 }
 
-variable "associate_public_ip_address" {
-  description = "Whether to associate a public IP address with the instance"
-  type        = bool
-}
+# variable "associate_public_ip_address" {
+#   description = "Whether to associate a public IP address with the instance"
+#   type        = bool
+# }
 
 variable "default_tags" {
   type = map(string)

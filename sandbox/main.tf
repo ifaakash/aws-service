@@ -30,4 +30,8 @@ module "instance" {
   interface_id                = module.network.network_interface_id
   instance_type               = var.instance_type
   default_tags                = var.default_tags
+
+  depends_on                  = [
+    module.network
+  ]
 }
