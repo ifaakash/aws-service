@@ -3,11 +3,10 @@ variable "prefix" {
   default = "otcomes-sandbox"
 }
 
-variable "bucket_name"{
+variable "bucket_name" {
   type    = string
-  default = "${var.prefix}-terraform-state"
+  default = "otcomes-sandbox-terraform-state"
 }
-
 
 ######################## DEFAULT TAGS ########################
 

@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "6.13.0"
     }
   }
@@ -32,15 +32,19 @@ module "network" {
 
 
 module "instance" {
-  source                      = "./instance"
-  prefix                      = var.prefix
-  ami_id                      = var.ami_id
+  source = "./instance"
+  prefix = var.prefix
+  ami_id = var.ami_id
   # associate_public_ip_address = var.associate_public_ip_address
-  interface_id                = module.network.network_interface_id
-  instance_type               = var.instance_type
-  default_tags                = var.default_tags
+  interface_id  = module.network.network_interface_id
+  instance_type = var.instance_type
+  default_tags  = var.default_tags
 
-  depends_on                  = [
+  depends_on = [
     module.network
   ]
+}
+
+module "state" {
+  source = "./state_management"
 }
