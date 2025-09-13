@@ -7,11 +7,16 @@ terraform {
   }
 }
 
+provider "aws" {
+  region = var.aws_region
+}
+
 module "network" {
   source                    = "./networking"
   region                    = var.aws_region
   vpc_cidr_block            = var.vpc_cidr_block
   public_subnet_cidr_block  = var.public_subnet_cidr_block
   private_subnet_cidr_block = var.private_subnet_cidr_block
+  ssh_access_cidr           = var.ssh_access_cidr
   tags                      = var.default_tags
 }

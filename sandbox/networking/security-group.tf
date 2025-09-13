@@ -2,10 +2,10 @@ resource "aws_security_group" "sg" {
   name        = "${var.prefix}-sg"
   description = "Security group for ${var.prefix}-vpc that allow SSH access from particular IP address"
   vpc_id      = aws_vpc.sandbox_vpc.id
-  tags        = merge({"Name": "${var.prefix}-sg"}, var.default_tags)
+  tags        = merge({ "Name" : "${var.prefix}-sg" }, var.default_tags)
 }
 
-resource "aws_vpc_security_group_ingress_rule" "ingress_ssh"{
+resource "aws_vpc_security_group_ingress_rule" "ingress_ssh" {
   security_group_id = aws_security_group.sg.id
   from_port         = 22
   to_port           = 22
@@ -13,16 +13,16 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_ssh"{
   cidr_blocks       = ["${var.ssh_access_cidr}"]
 }
 
-resource "aws_vpc_security_group_ingress_rule" "ingress_http"{
+resource "aws_vpc_security_group_ingress_rule" "ingress_http" {
   security_group_id = aws_security_group.sg.id
-  from_port = 80
-  to_port = 80
-  protocol = "tcp"
-  cidr_blocks = ["${var.ssh_access_cidr}"]
+  from_port         = 80
+  to_port           = 80
+  protocol          = "tcp"
+  cidr_blocks       = ["${var.ssh_access_cidr}"]
 }
 
 resource "aws_vpc_security_group_egress_rule" "egress_all" {
-  security_group_id = aws_security_group.allow_tls.id
+  security_group_id = aws_security_group.sg.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1"
 }

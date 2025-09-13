@@ -20,7 +20,7 @@ variable "public_subnet_cidr_block" {
 
 variable "private_subnet_cidr_block" {
   type    = string
-  default = "10.0.0.0/28"
+  default = "10.0.1.0/28"
 }
 
 variable "default_tags" {
