@@ -57,34 +57,37 @@ jobs:
             sandbox/tfplan
             sandbox/.terraform.lock.hcl
 
-  terraform-apply:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: [terraform-plan]
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: sandbox/
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v5
-
-      - name: Assume role and login to AWS
-        uses: aws-actions/configure-aws-credentials@v5.0.0
-        with:
-          role-to-assume: ${{ env.ASSUME_ROLE_ARN }}
-          aws-region: ${{ env.AWS_REGION }}
-
-      - name: Install Terraform
-        uses: hashicorp/setup-terraform@v3
-
-      - name: Download plan artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: tfplan-artifact
-          path: sandbox/
-
-      - name: Initialize Terraform
-        run: terraform init
-
       - name: Terraform apply
-        run: terraform apply tfplan
+        run: terraform apply tfplan --auto-approve
+
+  # terraform-apply:
+  #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+  #   needs: [terraform-plan]
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       working-directory: sandbox/
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v5
+
+  #     - name: Assume role and login to AWS
+  #       uses: aws-actions/configure-aws-credentials@v5.0.0
+  #       with:
+  #         role-to-assume: ${{ env.ASSUME_ROLE_ARN }}
+  #         aws-region: ${{ env.AWS_REGION }}
+
+  #     - name: Install Terraform
+  #       uses: hashicorp/setup-terraform@v3
+
+  #     - name: Download plan artifact
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: tfplan-artifact
+  #         path: sandbox/
+
+  #     - name: Initialize Terraform
+  #       run: terraform init
+
+  #     - name: Terraform apply
+  #       run: terraform apply tfplan
