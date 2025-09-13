@@ -14,6 +14,10 @@ variable "prefix"{
   type= string
 }
 
+variable "ssh_access_cidr"{
+  type= list(string)
+}
+
 variable "default_tags"{
   type= map(string)
 }
