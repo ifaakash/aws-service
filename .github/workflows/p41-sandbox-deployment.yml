@@ -1,13 +1,12 @@
 name: Deploy to P41 Sandbox
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 permissions:
   id-token: write
@@ -19,7 +18,7 @@ env:
 
 jobs:
   terraform-plan:
-    if: github.event_name == "pull_request"
+    if: github.event_name == pull_request
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -56,7 +55,7 @@ jobs:
           path: tfplan
 
   terraform-apply:
-    if: github.event_name == "push" && github.ref == 'refs/heads/main'
+    if: github.event_name == push && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
