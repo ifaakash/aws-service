@@ -43,8 +43,8 @@ jobs:
           echo "Listing folder structure"
           ls -l
 
-      # - name: Initialize Terraform
-      #   run: terraform init
+      - name: Initialize Terraform
+        run: terraform init
 
       # - name: terraform plan
       #   run: terraform plan -out=tfplan
