@@ -18,6 +18,11 @@ variable "prefix" {
   type        = string
 }
 
+variable "network_interface_id" {
+  description = "The network interface ID"
+  type        = string
+}
+
 # variable "associate_public_ip_address" {
 #   description = "Whether to associate a public IP address with the instance"
 #   type        = bool
