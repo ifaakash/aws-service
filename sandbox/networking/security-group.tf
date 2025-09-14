@@ -15,16 +15,16 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_ssh" {
 
 resource "aws_vpc_security_group_ingress_rule" "ingress_https" {
   security_group_id = aws_security_group.sg.id
-  from_port         = 443
-  to_port           = 443
+  from_port         = 0 #443
+  to_port           = 65535 # 443
   ip_protocol       = "tcp"
   cidr_ipv4         = var.ssh_access_cidr
 }
 
 resource "aws_vpc_security_group_ingress_rule" "ingress_http" {
   security_group_id = aws_security_group.sg.id
-  from_port         = 80
-  to_port           = 80
+  from_port         = 0 # 80
+  to_port           = 65535 # 80
   ip_protocol       = "tcp"
   cidr_ipv4         = var.ssh_access_cidr
 }
