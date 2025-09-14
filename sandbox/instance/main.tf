@@ -13,7 +13,7 @@ resource "aws_instance" "instance" {
 
 data "aws_key_pair" "key_pair" {
   filter {
-    name   = "Name"
+    name   = "key-name"
     values = ["otcomes-sandbox-key-pair"]
   }
   region = "us-east-1"
