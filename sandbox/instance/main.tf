@@ -7,3 +7,13 @@ resource "aws_instance" "instance" {
   # associate_public_ip_address = var.associate_public_ip_address
   tags = merge( { "Name": "${var.prefix}-instance" }, var.default_tags)
 }
+
+
+resource "aws_eip" "ip" {
+  domain            = "vpc"
+  instance          = aws_instance.instance.id
+  network_interface = var.network_interface_id
+  tags = merge({
+    "Name" : "${var.prefix}-eip"
+  }, var.default_tags)
+}

@@ -18,7 +18,7 @@ env:
 
 jobs:
   # run plan on raising PR, with main branch as target
-  terraform-plan:
+  deployment:
     if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
     runs-on: ubuntu-latest
     defaults:
@@ -57,34 +57,41 @@ jobs:
             sandbox/tfplan
             sandbox/.terraform.lock.hcl
 
-  terraform-apply:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: [terraform-plan]
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: sandbox/
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v5
+      - name: Destroy Infra
+        run: |
+          terraform destroy -auto-approve
 
-      - name: Assume role and login to AWS
-        uses: aws-actions/configure-aws-credentials@v5.0.0
-        with:
-          role-to-assume: ${{ env.ASSUME_ROLE_ARN }}
-          aws-region: ${{ env.AWS_REGION }}
+      # - name: Terraform apply
+      #   run: terraform apply --auto-approve
 
-      - name: Install Terraform
-        uses: hashicorp/setup-terraform@v3
+  # terraform-apply:
+  #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+  #   needs: [terraform-plan]
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       working-directory: sandbox/
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v5
 
-      - name: Download plan artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: tfplan-artifact
-          path: sandbox/
+  #     - name: Assume role and login to AWS
+  #       uses: aws-actions/configure-aws-credentials@v5.0.0
+  #       with:
+  #         role-to-assume: ${{ env.ASSUME_ROLE_ARN }}
+  #         aws-region: ${{ env.AWS_REGION }}
 
-      - name: Initialize Terraform
-        run: terraform init
+  #     - name: Install Terraform
+  #       uses: hashicorp/setup-terraform@v3
 
-      - name: Terraform apply
-        run: terraform apply tfplan
+  #     - name: Download plan artifact
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: tfplan-artifact
+  #         path: sandbox/
+
+  #     - name: Initialize Terraform
+  #       run: terraform init
+
+  #     - name: Terraform apply
+  #       run: terraform apply tfplan
