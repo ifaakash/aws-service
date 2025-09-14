@@ -12,11 +12,7 @@ resource "aws_instance" "instance" {
 }
 
 data "aws_key_pair" "key_pair" {
-  filter {
-    name   = "key-name"
-    values = ["otcomes-sandbox-key-pair"]
-  }
-  region = "us-east-1"
+  key_name = "otcomes-sandbox-key-pair"
 }
 
 resource "aws_eip" "ip" {
