@@ -6,7 +6,7 @@ resource "aws_instance" "instance" {
   }
   user_data                   = file("${path.module}/install.sh")
   user_data_replace_on_change = true
-  key_name                    = module.key_pair.key_name
+  key_name                    = module.key_pair.key_pair_name
   # associate_public_ip_address = var.associate_public_ip_address
   tags = merge({ "Name" : "${var.prefix}-instance" }, var.default_tags)
 }

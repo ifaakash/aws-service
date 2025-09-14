@@ -3,5 +3,5 @@ output "instance_id" {
 }
 
 output "key_name" {
-  value = module.key_pair.key_name
+  value = module.key_pair.key_pair_name
 }
