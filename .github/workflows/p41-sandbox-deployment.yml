@@ -18,7 +18,7 @@ env:
 
 jobs:
   # run plan on raising PR, with main branch as target
-  terraform-plan:
+  deployment:
     if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
     runs-on: ubuntu-latest
     defaults:
@@ -56,6 +56,10 @@ jobs:
           path: |
             sandbox/tfplan
             sandbox/.terraform.lock.hcl
+
+      - name: Destroy Infra
+        run: |
+          terraform destroy -auto-approve
 
       # - name: Terraform apply
       #   run: terraform apply --auto-approve
