@@ -49,20 +49,20 @@ jobs:
       - name: terraform plan
         run: terraform plan -out=tfplan
 
-      # - name: Upload Terraform plan
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: tfplan-artifact
-      #     path: |
-      #       sandbox/tfplan
-      #       sandbox/.terraform.lock.hcl
+      - name: Upload Terraform plan
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfplan-artifact
+          path: |
+            sandbox/tfplan
+            sandbox/.terraform.lock.hcl
 
       # - name: Destroy Infra
       #   run: |
       #     terraform destroy -auto-approve
 
-      # - name: Terraform apply
-      #   run: terraform apply --auto-approve
+      - name: Terraform apply
+        run: terraform apply --auto-approve
 
   # terraform-apply:
   #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
