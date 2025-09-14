@@ -3,5 +3,5 @@ output "instance_id" {
 }
 
 output "key_name" {
-  value = module.key_pair.key_pair_name
+  value = aws_key_pair.key_pair.id
 }

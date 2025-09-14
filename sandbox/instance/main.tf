@@ -6,17 +6,25 @@ resource "aws_instance" "instance" {
   }
   user_data                   = file("${path.module}/install.sh")
   user_data_replace_on_change = true
-  key_name                    = module.key_pair.key_pair_name
+  key_name                    = aws_key_pair.key_pair.id
   # associate_public_ip_address = var.associate_public_ip_address
   tags = merge({ "Name" : "${var.prefix}-instance" }, var.default_tags)
 }
 
+resource "tls_private_key" "pk" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
 
-module "key_pair" {
-  source             = "terraform-aws-modules/key-pair/aws"
-  key_name           = "instance-startup"
-  create_private_key = true
-  tags               = merge({ "Name" : "${var.prefix}-key-pair" }, var.default_tags)
+resource "local_file" "private_key_pem" {
+  content  = tls_private_key.pk.private_key_pem
+  filename = "instance-startup.pem"
+}
+
+resource "aws_key_pair" "key_pair" {
+  key_name   = "instance-startup"
+  public_key = tls_private_key.pk.public_key_openssh
+  tags       = merge({ "Name" : "${var.prefix}-key-pair" }, var.default_tags)
 }
 
 resource "aws_eip" "ip" {
