@@ -11,9 +11,9 @@ resource "aws_instance" "instance" {
   tags = merge({ "Name" : "${var.prefix}-instance" }, var.default_tags)
 }
 
-# data "aws_key_pair" "key_pair" {
-#   key_name = "otcomes-sandbox-key-pair"
-# }
+data "aws_key_pair" "key_pair" {
+  key_name = "otcomes-sandbox-key-pair"
+}
 
 resource "aws_eip" "ip" {
   domain            = "vpc"
