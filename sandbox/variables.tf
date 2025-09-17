@@ -20,9 +20,11 @@ variable "public_subnet_cidr_block" {
   default = "10.0.0.0/24"
 }
 
+# store via secrets
 variable "ssh_access_cidr" {
   type    = string
   default = "49.36.144.148/32"
+  # default = "0.0.0.0/0"
 }
 
 variable "private_subnet_cidr_block" {

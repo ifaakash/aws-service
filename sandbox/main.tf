@@ -32,9 +32,9 @@ module "network" {
 
 
 module "instance" {
-  source = "./instance"
-  prefix = var.prefix
-  ami_id = var.ami_id
+  source               = "./instance"
+  prefix               = var.prefix
+  ami_id               = var.ami_id
   network_interface_id = module.network.network_interface_id
   # associate_public_ip_address = var.associate_public_ip_address
   interface_id  = module.network.network_interface_id
@@ -48,4 +48,8 @@ module "instance" {
 
 # module "state" {
 #   source = "./state_management"
+# }
+
+# output "s3_bucket_name" {
+#   value = module.state.s3_bucket_name
 # }
